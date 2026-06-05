@@ -2,7 +2,7 @@ name: Bot Skincare
 
 on:
   schedule:
-    - cron: '0 6 * * *'   # 08:00 ora italiana (UTC+2 estate)
+    - cron: '30 9 * * *'   # 11:30 ora italiana (UTC+2 estate) 
   workflow_dispatch:
 
 jobs:
