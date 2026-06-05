@@ -1,0 +1,28 @@
+name: Bot Skincare
+
+on:
+  schedule:
+    - cron: '30 9 * * *'   # 11:30 ora italiana (UTC+2 estate)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Modalità: invia o start'
+        required: false
+        default: 'invia'
+
+jobs:
+  esegui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Esegui bot
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GOOGLE_DOC_FILE_ID: ${{ secrets.GOOGLE_DOC_FILE_ID }}
+          APPS_SCRIPT_URL: ${{ secrets.APPS_SCRIPT_URL }}
+          MODE: ${{ github.event.inputs.mode || 'invia' }}
+        run: python bot_skincare.py $MODE
