@@ -1,9 +1,7 @@
 name: Bot Skincare
 
 on:
-  schedule:
-    - cron: '30 9 * * *'   # 11:30 ora italiana (UTC+2 estate)
-  workflow_dispatch:
+  workflow_dispatch:   # Solo trigger manuale o da cronjob.org
     inputs:
       mode:
         description: 'Modalità: invia o start'
